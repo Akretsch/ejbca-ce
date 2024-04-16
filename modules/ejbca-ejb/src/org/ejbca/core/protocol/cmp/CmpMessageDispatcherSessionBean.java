@@ -233,6 +233,7 @@ public class CmpMessageDispatcherSessionBean implements CmpMessageDispatcherSess
                 throw new IllegalStateException("Something is null! Handler=" + handler + ", cmpMessage=" + cmpMessage);
             }
             final ResponseMessage ret = handler.handleMessage(cmpMessage, authenticated);
+            ret.setPreferredDigestAlg(cmpConfiguration.getPreferredProtectionDigest(cmpConfigurationAlias));
             if (ret == null) {
                 log.error(intres.getLocalizedMessage("cmp.errorresponsenull"));
             } else {

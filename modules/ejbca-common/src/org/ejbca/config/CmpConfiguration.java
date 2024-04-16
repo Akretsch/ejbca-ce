@@ -69,6 +69,7 @@ public class CmpConfiguration extends ConfigurationBase implements Serializable 
     public static final String CONFIG_RA_ENDENTITYPROFILEID = "ra.endentityprofileid";
     public static final String CONFIG_RA_CERTIFICATEPROFILE = "ra.certificateprofile";
     public static final String CONFIG_RESPONSEPROTECTION = "responseprotection";
+    public static final String CONFIG_PREFERREDPROTECTIONDIGEST = "response.preferredprotectiondigest";
     public static final String CONFIG_RACANAME = "ra.caname";
     public static final String CONFIG_VENDORCERTIFICATEMODE = "vendorcertificatemode";
     /**
@@ -245,6 +246,7 @@ public class CmpConfiguration extends ConfigurationBase implements Serializable 
         keys.add(alias + CONFIG_CERTREQHANDLER_CLASS);
         keys.add(alias + CONFIG_ALLOWSERVERGENERATEDKEYS);
         keys.add(alias + CONFIG_EXTENDEDVALIDATION);
+        keys.add(alias + CONFIG_PREFERREDPROTECTIONDIGEST);
         return keys;
     }
 
@@ -990,5 +992,14 @@ public class CmpConfiguration extends ConfigurationBase implements Serializable 
     public static String getOperationalMode(final boolean mode) {
         return mode ? RA_MODE : CLIENT_MODE;
     }
+
+    /**
+     * Method used by the Admin GUI.
+     */
+    public String getPreferredProtectionDigest(String alias) {
+        String key = alias + DOT + CONFIG_PREFERREDPROTECTIONDIGEST;
+        return getValue(key, alias);
+    }
+
 
 }
